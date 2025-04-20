@@ -109,7 +109,7 @@ const router = new VueRouter({
     routes
 })
 router.beforeEach((to, from, next) => {
-    let title = "Ricardo's blog"
+    let title = "Smart Assistant"
     if (to.meta.isAuth) { // 判断是否需要进行导航守卫
         const token = getToken()
         if (token != "") {

@@ -1,4 +1,4 @@
-import { get, post } from '..';
+  import { get, post } from '..';
 
 /**
  * 注册接口
@@ -6,7 +6,7 @@ import { get, post } from '..';
  * @returns 
  */
 export async function register (data) {
-  return await post('/user/register', data, false, false, true)
+  return await post('/account/auth/register', data, false, false, true)
 }
 
 /**
@@ -15,7 +15,7 @@ export async function register (data) {
  * @returns 
  */
 export async function login (data) {
-  return await post('/user/login', data, false)
+  return await post('/account/auth/login', data, false)
 }
 
 export async function refreshToken () {
@@ -23,9 +23,9 @@ export async function refreshToken () {
 }
 
 export async function check () {
-  return await get('/user/check')
+  return await get('/account/auth/check')
 }
 
 export async function currentUser () {
-  return await get('/user/currentUser')
+  return await get('/account/auth/current')
 }

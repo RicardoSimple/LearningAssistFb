@@ -1,5 +1,5 @@
 // 请求地址 (本地, 部署请使用 nginx 转发)
-let basePath = "http://localhost:8998/api";
+let basePath = "http://localhost:8998/api/v1";
 // 转发代理地址
 let proxyPath = '/api';
 // 文件上传地址统一配置

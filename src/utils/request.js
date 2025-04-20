@@ -5,6 +5,7 @@ import { clearAll } from './storage'
 
 const TokenKey = "Authorization"
 const RefreshTokenKey = "Authorization-refresh"
+const TokenPrefix = "Bearer"
 // create an axios instance
 const service = axios.create({
     baseURL: '/api',
@@ -18,7 +19,7 @@ service.interceptors.request.use(
         // check access
         if (config.access) {
             if (getToken() != null && getToken() != "") {
-                config.headers[TokenKey] = getToken()
+                config.headers[TokenKey] = TokenPrefix+" "+getToken()
             } else {
                 // redirect 未登录
             }

@@ -14,7 +14,7 @@
           label="账号"
           prop="userName"
         >
-          <el-input v-model.number="loginReq.userName"></el-input>
+          <el-input v-model.number="loginReq.username"></el-input>
         </el-form-item>
         <el-form-item
           label="密码"
@@ -22,7 +22,7 @@
         >
           <el-input
             type="password"
-            v-model="loginReq.pwd"
+            v-model="loginReq.password"
             autocomplete="off"
             show-password
           ></el-input>
@@ -48,14 +48,14 @@ export default {
   data () {
     return {
       loginReq: {
-        pwd: '',
-        userName: ''
+        password: '',
+        username: ''
       },
       rules: {
-        pwd: [
+        password: [
           { required: true, message: '请输入密码', trigger: 'change' }
         ],
-        userName: [
+        username: [
           { required: true, message: '请输入账号', trigger: 'change' }
         ]
       }
@@ -77,7 +77,8 @@ export default {
     },
     loginSubmit () {
       login(this.loginReq).then(res => {
-        var data = res.data
+        console.log(res)
+        var data = res.data.token_info
         console.log(data)
         setToken(data.token)
         setUserInfo(data.currentUser)

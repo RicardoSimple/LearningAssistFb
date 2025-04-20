@@ -28,6 +28,21 @@
             >
               <el-input v-model="registerForm.nickName"></el-input>
             </el-form-item>
+            <el-form-item label="用户类型">
+              <el-select
+                  v-model="registerForm.userType"
+                  placeholder="请选择用户类型"
+              >
+                <el-option
+                    label="学生"
+                    value="student"
+                ></el-option>
+                <el-option
+                    label="老师"
+                    value="teacher"
+                ></el-option>
+              </el-select>
+            </el-form-item>
             <el-form-item label="头像">
               <input
                 type="file"
@@ -73,6 +88,34 @@
               <el-input
                 v-model="registerForm.phone"
                 type="number"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="年级">
+              <el-select
+                  v-model="registerForm.classStage"
+                  placeholder="请选择年级"
+              >
+                <el-option
+                    label="一年级"
+                    value="1"
+                ></el-option>
+                <el-option
+                    label="二年级"
+                    value="2"
+                ></el-option>
+                <el-option
+                    label="默认"
+                    value="other"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item
+                label="班级邀请码"
+                prop="classNum"
+            >
+              <el-input
+                  v-model="registerForm.classNum"
+                  type="text"
               ></el-input>
             </el-form-item>
             <el-form-item
@@ -140,7 +183,11 @@ export default {
         email: "",
         pwd: "",
         avatar: null,
-        comfirmPwd: ""
+        comfirmPwd: "",
+        number:"",
+        classNum:"",
+        classStage:"",
+        userType:"student",
       },
       rules: {
         userName: [
@@ -180,14 +227,18 @@ export default {
       this.$refs.registerForm.validate((valid) => {
         if (valid) {
           let formData = new FormData()
-          formData.append('userName', this.registerForm.userName)
+          formData.append('username', this.registerForm.userName)
           formData.append('phone', this.registerForm.phone)
-          formData.append('nickName', this.registerForm.nickName)
+          formData.append('nickname', this.registerForm.nickName)
           formData.append('gender', this.registerForm.gender)
           formData.append('name', this.registerForm.name)
           formData.append('email', this.registerForm.email)
-          formData.append('pwd', this.registerForm.pwd)
+          formData.append('password', this.registerForm.pwd)
           formData.append('avatar', this.file)
+          formData.append('number', this.registerForm.number)
+          formData.append("class_num",this.registerForm.classNum)
+          formData.append("class_stage",this.registerForm.classStage)
+          formData.append("user_type",this.registerForm.userType)
 
           register(formData).then(res => {
             Message.success(res.data)
