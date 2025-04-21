@@ -27,6 +27,7 @@
     >
       <div class="menu-item header-search"><header-search /></div>
       <div class="menu-item"><router-link to="/">首页</router-link></div>
+      <div class="menu-item"><router-link to="/course">课程</router-link></div>
       <div class="menu-item hasChild">
         <a href="#">文章</a>
         <div
@@ -74,7 +75,7 @@
 <script>
 import HeaderSearch from '@/components/header-search'
 import { fetchCategory } from '../../api'
-import { check } from '../../api/userApi/userApi'
+import { check } from '../../api/userApi'
 import { getUserInfo } from '../../utils/userInfo'
 import UserMenu from '../user/user-menu.vue'
 export default {

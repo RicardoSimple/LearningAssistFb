@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { login } from '../../api/userApi/userApi'
+import { login } from '../../api/userApi'
 import { setRefreshToken, setToken, setUserInfo } from '../../utils/userInfo';
 
 export default {

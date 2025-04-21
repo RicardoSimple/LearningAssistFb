@@ -150,7 +150,7 @@
 
 <script>
 import { Message } from 'element-ui';
-import { register } from '../../api/userApi/userApi';
+import { register } from '../../api/userApi';
 export default {
   data () {
 

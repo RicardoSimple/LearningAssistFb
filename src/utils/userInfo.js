@@ -1,5 +1,5 @@
 import { store, load, remove } from './storage'
-import { currentUser } from '../api/userApi/userApi'
+import { currentUser } from '../api/userApi'
 
 const loadUserInfoKey = "load-user-info"
 const loadTokenKey = "load-token-info"

@@ -11,7 +11,7 @@
 
 <script>
 import UserProfile from '../../components/user/profile.vue'
-import { currentUser } from '../../api/userApi/userApi'
+import { currentUser } from '../../api/userApi'
 
 export default {
   data () {

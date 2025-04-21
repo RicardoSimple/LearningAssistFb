@@ -1,4 +1,4 @@
-  import { get, post } from '..';
+  import { get, post } from './index';
 
 /**
  * 注册接口
