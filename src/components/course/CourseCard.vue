@@ -3,7 +3,10 @@
   <el-card class="card">
     <img class="cover" :src="course.cover" alt="课程封面" />
     <div class="info">
-      <h3 class="title">{{ course.name }}</h3>
+      <router-link :to="`/course/${course.id}`">
+        <h3 class="title">{{ course.name }}</h3>
+
+      </router-link>
       <div class="tag_container">
         <el-tag type="info" size="mini" class ="subject_tag"  v-for="subject in course.subjects" :key="subject.id" >{{ subject.name }}</el-tag>
       </div>

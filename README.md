@@ -9,6 +9,8 @@ npm install
 ### 启动服务
 
 ```
+ $env:NODE_OPTIONS="--openssl-legacy-provider" 
+
 npm run serve
 ```
 
