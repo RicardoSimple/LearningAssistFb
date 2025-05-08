@@ -14,7 +14,7 @@
           label="账号"
           prop="userName"
         >
-          <el-input v-model.number="loginReq.username"></el-input>
+          <el-input v-model="loginReq.username"></el-input>
         </el-form-item>
         <el-form-item
           label="密码"
@@ -81,8 +81,8 @@ export default {
         var data = res.data.token_info
         console.log(data)
         setToken(data.token)
-        setUserInfo(data.currentUser)
-        setRefreshToken(data.refreshToken)
+        setUserInfo(data)
+        setRefreshToken(data.refresh_token)
         window.location.href = '/'
       })
     }

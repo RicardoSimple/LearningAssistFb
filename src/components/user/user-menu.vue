@@ -46,8 +46,8 @@
           type="text"
           size="medium"
           icon="el-icon-reading"
-          @click="myArticleEvent"
-        >我的文章</el-button>
+          @click="myAssignmentEvent"
+        >我的作业</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -142,8 +142,8 @@ export default {
     mainEvent () {
       window.location.href = '/main'
     },
-    myArticleEvent () {
-      window.location.href = '/articles'
+    myAssignmentEvent () {
+      window.location.href = '/assignments'
 
     },
     addArticleEvent () {

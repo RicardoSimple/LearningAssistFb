@@ -67,6 +67,24 @@ const routes = [
         meta: { title: '文章管理', isAuth: true }
     },
     {
+        path: '/assignments',
+        name: 'assignments',
+        component: () => import('../views/Assignments.vue'),
+        meta: { title: '我的作业', isAuth: true }
+    },
+    {
+        path: '/assignment/:id',
+        name: 'assignmentDetail',
+        component: () => import('../views/AssignmentDetail.vue'),
+        meta: { title: '作业详情' }
+    },
+    {
+        path: '/learn',
+        name: 'learn',
+        component: () => import('../views/Learn.vue'),
+        meta: { title: '学习', isAuth: true }
+    },
+    {
         path: '/setting',
         component: () => import('../views/user/Setting.vue'),
         children: [

@@ -19,9 +19,9 @@
               :src="user.background"
             ></el-image></el-descriptions-item>
           <el-descriptions-item
-            label="用户名">{{ user.userName }}</el-descriptions-item>
+            label="用户名">{{ user.username }}</el-descriptions-item>
           <el-descriptions-item
-            label="手机号">{{user.phone}}</el-descriptions-item>
+            label="手机号">{{user.phoneNumber}}</el-descriptions-item>
           <el-descriptions-item label="昵称">
             <el-input
               v-model="user.nickName"

@@ -21,7 +21,7 @@ export default {
   },
   async created () {
     await currentUser().then(res => {
-      this.currentUser = res.data
+      this.currentUser = res.data.user
       console.log(this.currentUser)
     })
   },
