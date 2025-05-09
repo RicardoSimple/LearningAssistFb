@@ -9,7 +9,7 @@ const TokenPrefix = "Bearer"
 // create an axios instance
 const service = axios.create({
     baseURL: '/api',
-    timeout: 5000 // request timeout
+    timeout: 50000 // request timeout
 })
 
 // request interceptor

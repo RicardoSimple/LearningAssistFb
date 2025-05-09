@@ -76,7 +76,7 @@ export function postStream(url, data, onMessage, access = true) {
         }
     }
 
-    fetch('/api/'+url, {
+    fetch('/api'+url, {
         method: 'POST',
         headers,
         body: JSON.stringify(data),
