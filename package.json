@@ -17,6 +17,7 @@
     "core-js": "^3.6.4",
     "element-ui": "^2.15.14",
     "highlight.js": "^11.5.1",
+    "marked": "^4.3.0",
     "mockjs": "^1.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",

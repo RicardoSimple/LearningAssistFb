@@ -6,12 +6,12 @@
   >
     <div class="site-logo">
       <router-link to="/">
-<!--        <img-->
-<!--          src="@/assets/LO.png"-->
-<!--          style="background-repeat: no-repeat; background-position: center;"-->
-<!--          alt=""-->
-<!--        >-->
-         <p class="site-name">智能学习助手</p>
+        <img
+          src="@/assets/ALLogo.png"
+          style="background-repeat: no-repeat; background-position: center;"
+          alt=""
+        >
+        <div class="site-name"><p>智能学习助手</p></div>
       </router-link>
     </div>
     <div
@@ -160,6 +160,8 @@ export default {
   text-align: center;
 
   img {
+    width: 40px;
+    height: auto;
   }
 
   p.site-name {
