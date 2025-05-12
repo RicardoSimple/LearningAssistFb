@@ -13,7 +13,30 @@
         </div>
         <quote v-else>{{notice}}</quote>
       </div>
+      <div class="block">
+        <el-carousel height="40vh" type="card" arrow="always">
+          <el-carousel-item class="carou_item" v-for="course in hotcourses" :key="course.id">
+            <el-card class="card">
+              <img class="cover" :src="course.cover" alt="课程封面" />
+              <div class="info">
+                <router-link :to="`/course/${course.id}`">
+                  <div class="link_container">
+                    <div>
+                      <h3 class="title">{{ course.name }}</h3>
+                    </div>
+                    <div>
+                      <el-statistic :value="course.view_count" title="浏览量">
+                      </el-statistic>
+                    </div>
+                  </div>
 
+                </router-link>
+                <p class="desc">{{ course.description }}</p>
+              </div>
+            </el-card>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
       <!--焦点图-->
       <div
         class="top-feature"
@@ -24,12 +47,19 @@
             聚焦<small-ico></small-ico></div>
         </section-title>
         <div class="feature-content">
+<!--          <div-->
+<!--            class="feature-item"-->
+<!--            v-for="item in features"-->
+<!--            :key="item.title"-->
+<!--          >-->
+<!--            <Feature :data="item"></Feature>-->
+<!--          </div>          -->
           <div
             class="feature-item"
-            v-for="item in features"
-            :key="item.title"
+            v-for="item in hotcourses"
+            :key="item.id"
           >
-            <Feature :data="item"></Feature>
+            <HotCourseCard :course="item"></HotCourseCard>
           </div>
         </div>
       </div>
@@ -39,12 +69,12 @@
         :class="{'search':hideSlogan}"
       >
         <section-title v-if="!hideSlogan">推荐</section-title>
-        <template v-for="item in postList">
-          <post
-            :post="item"
-            :key="item.id"
-          ></post>
-        </template>
+<!--        <template v-for="item in postList">-->
+<!--          <post-->
+<!--            :post="item"-->
+<!--            :key="item.id"-->
+<!--          ></post>-->
+<!--        </template>-->
       </div>
 
       <!--加载更多-->
@@ -68,21 +98,21 @@ import sectionTitle from '@/components/section-title'
 import Post from '@/components/post'
 import SmallIco from '@/components/small-ico'
 import Quote from '@/components/quote'
-import { fetchFocus, fetchList } from '../api'
-import { getHotArticle } from '../api/articleApi/articleApi'
+import {getHotNCourse} from "@/api/courseApi";
+import HotCourseCard from "@/components/course/HotCourseCard.vue";
 
 export default {
   name: 'Home',
   props: ['cate', 'words'],
   data () {
     return {
-      features: [],
-      postList: [],
+      hotcourses:[],
       currPage: 1,
       hasNextPage: false
     }
   },
   components: {
+    HotCourseCard,
     Banner,
     Feature,
     sectionTitle,
@@ -105,13 +135,13 @@ export default {
     }
   },
   methods: {
-    fetchFocus () {
-      fetchFocus().then(res => {
-        this.features = res.data || []
-      }).catch(err => {
-        console.log(err)
-      })
-    },
+    // fetchFocus () {
+    //   fetchFocus().then(res => {
+    //     this.features = res.data || []
+    //   }).catch(err => {
+    //     console.log(err)
+    //   })
+    // },
     loadMore () {
       fetchList({ page: this.currPage + 1 }).then(res => {
         this.postList = this.postList.concat(res.data.items || [])
@@ -121,15 +151,18 @@ export default {
     }
   },
   created () {
-    getHotArticle().then(res => {
-      console.log(res)
-      this.features = res.data
-      this.postList = res.data
+    getHotNCourse(6).then(res => {
+      this.hotcourses = res.data
     })
   }
 }
 </script>
 <style scoped lang="less">
+.cover {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
 .site-content {
   .notify {
     margin: 60px 0;
@@ -156,12 +189,14 @@ export default {
 
   .feature-content {
     margin-top: 10px;
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
     position: relative;
 
     .feature-item {
-      width: 32.9%;
+      width: 25%;
+      margin: 20px 10px 10px 20px;
     }
   }
 }
@@ -214,6 +249,47 @@ export default {
     }
   }
 }
+.link_container{
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  cursor: pointer;
 
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .cover {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+  }
+
+  .info {
+    padding: 18px;
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+  }
+}
 /******/
 </style>

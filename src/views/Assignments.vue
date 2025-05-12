@@ -66,12 +66,21 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const res = await getMyAssignments(this.pageNum, this.pageSize)
+        const res = await getMyAssignments(this.pageNum, this.pageSize).then(res => {
+          console.log(res)
+          if (res.msg!=="") {
+            // this.$notify({
+            //   title: '加载失败',
+            //   message:'这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案'
+            // });
+          }
+          return res
+        })
         this.assignments = res.data.list
         this.total = res.data.total
         this.filteredAssignments = this.assignments
       } catch (err) {
-        this.$message.error('加载作业失败')
+        // this.$message.error('加载作业失败')
       }
     },
     handleFilter() {
@@ -98,6 +107,7 @@ export default {
   }
 
   .card-grid {
+    height: 60vh;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;

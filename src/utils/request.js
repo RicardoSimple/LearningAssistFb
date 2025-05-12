@@ -58,18 +58,19 @@ service.interceptors.response.use(
         const res = response.data
         // store.commit('SET_LOADING',false);
 
+        console.log(res)
         // if the custom code is not 20000, it is judged as an error.
         if (res.code == 312) {
             if (getToken() != null) {
-                Message.error(res.message)
+                Message.error(res.msg)
                 clearAll();
             }
-            return Promise.reject(new Error(res.message || 'Error'))
+            return Promise.reject(new Error(res.msg || 'Error'))
         }
         if (res.code !== 200) {
             // alert
-            Message.error(res.message)
-            return Promise.reject(new Error(res.message || 'Error'))
+            Message.error(res.msg)
+            return Promise.reject(new Error(res.msg || 'Error'))
         } else {
             return res
         }
@@ -77,7 +78,7 @@ service.interceptors.response.use(
     error => {
         // alert
         console.log('err' + error) // for debug
-        Message.error(res.message)
+        Message.error(res.msg)
         return Promise.reject(error)
     }
 )

@@ -4,12 +4,17 @@
     <img class="cover" :src="course.cover" alt="课程封面" />
     <div class="info">
       <router-link :to="`/course/${course.id}`">
-        <h3 class="title">{{ course.name }}</h3>
+        <div class="link_container">
+          <div>
+            <h3 class="title">{{ course.name }}</h3>
+          </div>
+          <div>
+            <el-statistic :value="course.view_count" title="浏览量">
+            </el-statistic>
+          </div>
+        </div>
 
       </router-link>
-      <div class="tag_container">
-        <el-tag type="info" size="mini" class ="subject_tag"  v-for="subject in course.subjects" :key="subject.id" >{{ subject.name }}</el-tag>
-      </div>
       <p class="desc">{{ course.description }}</p>
       <div class="meta">
         <span><i class="icon">⏱</i>{{ course.duration }}</span>
@@ -22,7 +27,7 @@
 import {formatDateOnly} from "@/utils/date";
 
 export default {
-  name:'CourseCard',
+  name:'HotCourseCard',
   methods: {formatDateOnly},
   props:{
     course:{
@@ -39,6 +44,10 @@ export default {
 }
 </script>
 <style scoped lang="less">
+.link_container{
+  display: flex;
+  justify-content: space-between;
+}
 .card {
   background: #fff;
   border-radius: 14px;
